@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {ref, computed} from 'vue'
-import { characterNames } from '@/characterNames';
+import { characterNames } from '@/api/rickAndMorty/characterNames';
 
 const props = defineProps<{
     isOpen: boolean
@@ -10,9 +10,8 @@ const emit = defineEmits<{
 }>()
 
 
-
 const currentName = ref<string>('')
-const statusOptions = ['any', 'alive', 'dead', 'unknown']
+const statusOptions = ['Any', 'Alive', 'Dead', 'Unknown']
 const currentStatus = ref<string>(statusOptions[0])
 const filteredNames = computed(() => {
     return characterNames.value.filter((name) => name.toLowerCase().startsWith(currentName.value.toLowerCase()))
@@ -24,7 +23,6 @@ const setName = (name:string) => {
     currentName.value = name
     openName.value = false
 }
-
 
 
 const openStatus = ref<boolean>(false)
@@ -40,7 +38,7 @@ const setStatus = (status:string) => {
         <div class="modal__inner" @click.stop>
             <div class="modal__inputs">
                 <div class="input__name">
-                    <label for="name">Имя персонажа</label>
+                    <label for="name">Character Name</label>
                     <input type="text" id="name" v-model="currentName" @input="openName=true">
                     <ul class="name-options" v-if="openName && currentName.length > 0">
                         <li class="name-option" @click="setName(currentName)">{{ currentName }}</li>
@@ -51,17 +49,17 @@ const setStatus = (status:string) => {
                 </div>
               
                 <div class="input__status">
-                   <p for="status">Статус персонажа</p>
+                   <p for="status">Character status</p>
                    <div class="input__status_content">
-                        <p class="current-status" @click="openStatus=true" :style="{backgroundColor: currentStatus === 'alive' ? 'green' : currentStatus === 'dead' ? 'red' : 'gray'}">{{currentStatus}}</p>
+                        <p class="current-status" @click="openStatus=true" :style="{backgroundColor: currentStatus === 'Alive' ? 'green' : currentStatus === 'Dead' ? 'red' : 'gray'}">{{currentStatus}}</p>
                         <ul class="status-options" v-if="openStatus">
                             <li class="status-option" v-for="status in statusOptions" :key="status" @click="setStatus(status)">{{ status }}</li>
                         </ul>
                    </div>
                 </div>
             </div>
-            <button class="modal__submit" @click=" emit('submit', currentName, currentStatus)">Применить</button>
-            <button class="modal__reset" @click=" emit('submit', '', 'any')">Сброс</button>
+            <button class="modal__submit" @click=" emit('submit', currentName, currentStatus)">Apply</button>
+            <button class="modal__reset" @click=" emit('submit', '', 'any')">Reset</button>
         </div>
     </div>
 </template>
@@ -74,6 +72,7 @@ const setStatus = (status:string) => {
     right: 0;
     background: rgba(0, 0, 0, 0.5);
     transition: all .2s ease-in-out;
+    
 }
 
 .modal.active{
@@ -190,11 +189,12 @@ input:focus{
     border-radius: 5px;
     font-size: 2rem;
     cursor: pointer;
+   
   
 }
 
 .modal__submit:hover{
-    background: rgb(60, 62, 68);
+    background: rgba(50, 253, 128, 0.452);
 }
 
 .modal__reset:hover{

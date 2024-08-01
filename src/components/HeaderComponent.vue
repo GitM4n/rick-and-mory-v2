@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import IconFilter from '@/assets/icons/IconFilter.vue';
-const emit = defineEmits<{
-    (e: 'open-modal'): void
-}>()
 
 </script>
 
@@ -12,9 +8,9 @@ const emit = defineEmits<{
         <div class="container">
             <div class="header__inner">
                 <h2 class="header__title">
-                   The Rick and Morty characters 
+                   <slot>The Rick and Morty</slot>
                 </h2>
-                <IconFilter class="header__filter" @click="emit('open-modal')"/>
+                <slot name="filter"></slot>
             </div>    
         </div>
     </header>
@@ -44,9 +40,7 @@ const emit = defineEmits<{
     font-weight: 900;
 }
 
-.header__filter{
-    width: 50px;
-}
+
 
 
 @media (max-width:599px){ 
