@@ -2,6 +2,7 @@
 import {ref, computed} from 'vue'
 import { characterNames } from '@/api/rickAndMorty/characterNames';
 
+
 const props = defineProps<{
     isOpen: boolean
 }>()
@@ -59,7 +60,7 @@ const setStatus = (status:string) => {
                 </div>
             </div>
             <button class="modal__submit" @click=" emit('submit', currentName, currentStatus)">Apply</button>
-            <button class="modal__reset" @click=" emit('submit', '', 'any')">Reset</button>
+            <button class="modal__reset" @click=" emit('submit', '', 'Any')">Reset</button>
         </div>
     </div>
 </template>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import LoaderComponent from './components/LoaderComponent.vue';
 import { useLoader } from '@/composables/useLoader';
+import LoaderComponent from '@/components/root/LoaderComponent.vue';
+   
 const {loading} = useLoader()
 </script>
 
@@ -14,7 +15,19 @@ const {loading} = useLoader()
 <style>
 
 
+body{
+  color: white;
+}
 
+.container{
+  max-width: 1460px;
+  padding: 0 15px;
+  margin: 0 auto;
+ 
+ }
 
-
+.content{
+  color: white;
+  padding: 40px 0;
+ }
 </style>

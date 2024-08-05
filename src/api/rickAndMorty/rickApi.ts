@@ -1,9 +1,8 @@
 import {ref} from 'vue'
-import type { ICharacter } from './interfaces'
-
-
-
+import type { ICharacter, IEpisode, ILocation, NameAPI } from './interfaces'
 import { useLoader } from '@/composables/useLoader'
+
+
 const {
     start,
     stop,
@@ -12,44 +11,60 @@ const {
 
 
 const characters = ref<ICharacter[]>([])
+const episodes = ref<IEpisode[]>([])
+const locations = ref<ILocation[]>([])
+
+const apiName = ref<NameAPI>('character')
 const totalPages = ref<number[]>([])
-const isModal = ref<boolean>(false)
 
 
 const currentPage = ref<number>(Number(localStorage.getItem('currentPage')) || 1)
 const nameFilter = ref<string>(localStorage.getItem('name')! || '')
-const statusFilter = ref<string>(localStorage.getItem('status') || 'any')
+const statusFilter = ref<string>(localStorage.getItem('status') || 'Any')
 
 
 
 
-export const rickApi = () => {
- 
+export const rickAPI = () => {
 
-    const getCards = async () => {
+    const getCards = async() => {
         start()
 
         let name = nameFilter.value
         let status = statusFilter.value
 
         name === '' ? name = '' : name = `name=${name}`
-        status === 'any' ? status = '' : status = `status=${status}`
+        !status || status === 'Any' ? status = '' : status = `status=${status}`
      
         document.body.classList.add('lock')
-        const res = await fetch(`https://rickandmortyapi.com/api/character/?page=${currentPage.value}&${name}&${status}`)
+        const res = await fetch(`https://rickandmortyapi.com/api/${apiName.value}/?page=${currentPage.value}&${name}&${status}`)
         
         if(res.ok){
             const result = await res.json()
-            characters.value = result.results
+            switch (apiName.value) {
+                case 'character':
+                    characters.value = result.results
+                    break
+                case 'episode':
+                    episodes.value = result.results
+                    break
+                case 'location':
+                    locations.value = result.results
+                    break
+                default:
+                    break
+            }
 
-            console.log(result.info.pages)
+
+
+            console.log(result)
             await generatePagesArr(result.info.pages)
             
         }else{
             console.log('error:' + res.status)
             characters.value = []
         }
-
+        
         setTimeout(() => {
             document.body.classList.remove('lock')
             window.scrollTo({ top: 400, behavior: 'smooth' })
@@ -76,18 +91,17 @@ export const rickApi = () => {
     const reset = async() => {
         currentPage.value = 1
         nameFilter.value = ''
-        statusFilter.value = 'any'
+        statusFilter.value = 'Any'
         _setLocalStorageData()
-        isModal.value = false
         await getCards()
+        console.log('reset')
     }
 
-    const setFilters = async (name:string, status:string) => {
+    const setFiltersCharacters = async (name:string, status:string) => {
         currentPage.value = 1
         nameFilter.value = name
         statusFilter.value = status
         _setLocalStorageData()
-        isModal.value = false
         await getCards()
     }
 
@@ -106,12 +120,14 @@ export const rickApi = () => {
         getCards, 
         updatePage, 
         characters, 
+        episodes,
+        locations,
         totalPages, 
         currentPage,
         reset, 
-        setFilters, 
+        setFiltersCharacters, 
         nameFilter, 
         statusFilter, 
-        isModal
+        apiName
     }
 }
