@@ -44,6 +44,23 @@ const emitValue = (page:number|string) =>{
 
 
 
+const updatePage = (page: number) => {
+  if(page > props.pagesArr.length){
+     emitValue(props.pagesArr[props.pagesArr.length-1])
+     return
+   }
+
+   if(page < 1){
+     emitValue(1)
+     return
+   }
+
+
+}
+
+
+
+
 </script>
 
 
@@ -56,13 +73,13 @@ const emitValue = (page:number|string) =>{
             >{{page}}</li>
       </ul>
       <div class="pagination__controls">
-        <button class="prev" @click="emitValue(currentPage-1)"></button>
-        <button class="next" @click="emitValue(currentPage+1)"></button>
+        <button class="prev" @click="updatePage(currentPage-1)"></button>
+        <button class="next" @click="updatePage(currentPage+1)"></button>
       </div>
       
       <div class="pagination__input">
         <label for="page">Enter page</label>
-        <input id="page" type="number" v-model="inputPage" @keyup.enter="emitValue(inputPage)">
+        <input id="page" type="number" v-model="inputPage" @keyup.enter="updatePage(inputPage)">
       </div>
   </div>
  
@@ -107,7 +124,6 @@ const emitValue = (page:number|string) =>{
 
   .pagination__input{
     display: flex;
-
     gap: 10px;
   }
 
@@ -119,7 +135,7 @@ const emitValue = (page:number|string) =>{
     outline: none;
     background: transparent;
     color: gray;
-    font-size: 2.5rem;
+    font-size: 2rem;
     padding: 5px 10px;
     transition: all .2s ease-in-out;
   }
@@ -156,15 +172,7 @@ const emitValue = (page:number|string) =>{
     .pagination__count{
       display: none;
     }
-
-    input,
-    label{
-      font-size: 2.5rem;
-    }
-
   
-
-
     .pagination__count.active{
       display: block;
       text-align: center
@@ -172,7 +180,7 @@ const emitValue = (page:number|string) =>{
 
     .pagination__controls{
       display: flex;
-      gap: 40px;
+      gap: 80px;
       position: absolute;
       top: 0;
       left: 50%;
