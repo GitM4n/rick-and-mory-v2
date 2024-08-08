@@ -5,7 +5,7 @@ import HeaderComponent from '@/components/root/HeaderComponent.vue';
 import IconFilter from '@/assets/icons/IconFilter.vue';
 import CardsWrapperComponent from '@/components/card/CardsWrapperComponent.vue';
 
-import { rickAPI } from '@/api/rickAndMorty/rickAPI';
+import { rickAPI } from '@/api/rick-and-morty/rickAPI';
 import { ref } from 'vue';
 
 

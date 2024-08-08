@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import type { ICharacter } from '@/api/rickAndMorty/interfaces';
+import type { ICharacter } from '@/api/rick-and-morty/interfaces';
 
 const props = defineProps<{
   item: ICharacter,

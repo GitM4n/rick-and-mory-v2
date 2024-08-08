@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ILocation } from '@/api/rickAndMorty/interfaces';
+import type { ILocation } from '@/api/rick-and-morty/interfaces';
 
 const props = defineProps<{
     item: ILocation

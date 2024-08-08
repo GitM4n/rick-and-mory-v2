@@ -2,7 +2,7 @@
 
 <script setup lang="ts">
 import HeaderComponent from '@/components/root/HeaderComponent.vue';
-import { rickAPI } from '@/api/rickAndMorty/rickAPI';
+import { rickAPI } from '@/api/rick-and-morty/rickAPI';
 import CardsWrapperComponent from '@/components/card/CardsWrapperComponent.vue';
 
 const {

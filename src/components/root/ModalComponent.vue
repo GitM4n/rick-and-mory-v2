@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {ref, computed} from 'vue'
-import { characterNames } from '@/api/rickAndMorty/characterNames';
+import { characterNames } from '@/api/rick-and-morty/characterNames';
 
 
 const props = defineProps<{

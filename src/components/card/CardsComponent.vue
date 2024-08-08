@@ -2,7 +2,7 @@
 import CharactersCard from './card-types/CharactersCard.vue';
 import EpisodesCard from './card-types/EpisodesCard.vue';
 import LocationsCard from './card-types/LocationsCard.vue';
-import type { ArrayAPI, NameAPI } from '@/api/rickAndMorty/interfaces';
+import type { ArrayAPI, NameAPI } from '@/api/rick-and-morty/interfaces';
 import { useRouter } from 'vue-router';
 
 

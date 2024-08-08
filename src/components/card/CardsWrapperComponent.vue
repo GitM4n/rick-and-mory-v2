@@ -2,8 +2,8 @@
 import { onMounted } from 'vue'
 import CardsComponent from './CardsComponent.vue';
 import PaginationComponent from '@/components/PaginationComponent.vue';
-import { rickAPI } from '@/api/rickAndMorty/rickAPI';
-import type { NameAPI, ArrayAPI } from '@/api/rickAndMorty/interfaces';
+import { rickAPI } from '@/api/rick-and-morty/rickAPI';
+import type { NameAPI, ArrayAPI } from '@/api/rick-and-morty/interfaces';
 
 
 

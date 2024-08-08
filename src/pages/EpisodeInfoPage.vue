@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {ref, onMounted} from 'vue'
-import { rickAPI } from '@/api/rickAndMorty/rickAPI';
-import type { IEpisode, ICharacter } from '@/api/rickAndMorty/interfaces';
+import { rickAPI } from '@/api/rick-and-morty/rickAPI';
+import type { IEpisode, ICharacter } from '@/api/rick-and-morty/interfaces';
 import CardsComponent from '@/components/card/CardsComponent.vue';
 
 

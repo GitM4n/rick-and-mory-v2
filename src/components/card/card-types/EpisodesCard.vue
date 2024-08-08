@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { IEpisode } from '@/api/rickAndMorty/interfaces';
+import type { IEpisode } from '@/api/rick-and-morty/interfaces';
 
 const props = defineProps<{
     item: IEpisode
