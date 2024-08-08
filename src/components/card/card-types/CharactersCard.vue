@@ -71,12 +71,18 @@ onMounted(async () => {
     color: rgb(60, 62, 68) ;
 
   }
-  
+
   .character__image img{
     height: 100%;
+    width: 100%;
     margin: 0px;
     object-position: center center;
     object-fit: cover;
+  }
+
+  .character__conten,
+  .character__image{
+    flex:0 0 50%;
   }
   
   .character__content{
@@ -119,7 +125,7 @@ onMounted(async () => {
   
   
   
-  @media (max-width:599px){
+  @media (max-width:1099px){
     .character{
       flex-direction: column;
     }

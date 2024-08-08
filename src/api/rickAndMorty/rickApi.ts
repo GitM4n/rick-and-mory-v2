@@ -73,6 +73,39 @@ export const rickAPI = () => {
 
     }
 
+
+
+    const getSingleCard = async(id:number, api:NameAPI):Promise<ICharacter | IEpisode | ILocation | null> => {
+
+        const res = await fetch(`https://rickandmortyapi.com/api/${api}/${id}`)
+        if(res.ok){
+            const result = await res.json()
+            if(result) return result
+        }
+         
+        console.error('error:' + res.status)
+        return null
+    }
+
+
+    const getPromisesData = async(array:string[], type:NameAPI):Promise<ICharacter[] | IEpisode[] | ILocation[]> => {
+        const promises = array.map(async (url) =>{
+            const id = url.split('/').pop() as string
+            const res = await getSingleCard(+id, type)
+            if(res){
+                return res
+            }else{
+                return null
+            }
+        })
+        const data = await Promise.all(promises)
+        
+        const filterData = data.filter((item) => item !== null)
+        return filterData as ICharacter[] | IEpisode[] | ILocation[]
+        
+    }
+
+
     const updatePage = async(page:number) => {
         currentPage.value = page
         _setLocalStorageData()
@@ -128,6 +161,8 @@ export const rickAPI = () => {
         setFiltersCharacters, 
         nameFilter, 
         statusFilter, 
-        apiName
+        apiName,
+        getSingleCard,
+        getPromisesData
     }
 }

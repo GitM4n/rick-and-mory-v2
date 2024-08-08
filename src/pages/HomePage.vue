@@ -3,7 +3,7 @@
 import ModalComponent from '@/components/root/ModalComponent.vue';
 import HeaderComponent from '@/components/root/HeaderComponent.vue';
 import IconFilter from '@/assets/icons/IconFilter.vue';
-import CardsComponent from '@/components/card/CardsComponent.vue';
+import CardsWrapperComponent from '@/components/card/CardsWrapperComponent.vue';
 
 import { rickAPI } from '@/api/rickAndMorty/rickAPI';
 import { ref } from 'vue';
@@ -46,7 +46,7 @@ const resetFilters = () => {
     </HeaderComponent >
     <div class="content">
       <div class="container">
-        <CardsComponent
+        <CardsWrapperComponent
             :array="characters"
             :total-pages="totalPages"
             :current-page="currentPage"
@@ -56,9 +56,7 @@ const resetFilters = () => {
           />
       </div>
     </div>
-
     <ModalComponent @click="isModal=false" :is-open="isModal" @submit="updateFilters"/>
-
 </template>
 
 <style>

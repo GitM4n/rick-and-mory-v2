@@ -56,6 +56,12 @@ const props = defineProps<{
     font-weight: 900;
   }
 
+  .location__type p:first-child,
+  .location__dimension p:first-child {
+    font-weight: 600;
+    color: rgb(158, 158, 158);
+  }
+
   
   @media (max-width:599px){
     .location{

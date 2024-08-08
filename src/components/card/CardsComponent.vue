@@ -1,22 +1,18 @@
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
-import {CharactersCard, EpisodesCard, LocationsCard} from './card-types'
-import PaginationComponent from '@/components/PaginationComponent.vue';
-import { rickAPI } from '@/api/rickAndMorty/rickAPI';
-import type { ICharacter, IEpisode, NameAPI, ILocation } from '@/api/rickAndMorty/interfaces';
+import CharactersCard from './card-types/CharactersCard.vue';
+import EpisodesCard from './card-types/EpisodesCard.vue';
+import LocationsCard from './card-types/LocationsCard.vue';
+import type { ArrayAPI, NameAPI } from '@/api/rickAndMorty/interfaces';
+import { useRouter } from 'vue-router';
 
-type ArrayAPI = ICharacter[] | IEpisode[] | ILocation[]
-
-const {apiName} = rickAPI()
 
 const props = defineProps<{
-  array: ArrayAPI,
-  totalPages: number[],
-  currentPage: number
-  updatePage: (page: number) => Promise<void>,
-  reset: () => void
-  type:NameAPI
+    array: ArrayAPI,
+    reset?: () => void,
+    type:NameAPI
 }>()
+
+const router = useRouter()
 
 
 function containsKey(obj:any, key:string){
@@ -35,44 +31,22 @@ const setCardComponent = () => {
     return LocationsCard
   }
 }
-
-
-
-const setApiName = async () => {
-  switch(props.type){
-    case 'character':
-      return apiName.value = 'character'
-    case 'episode':
-      return apiName.value = 'episode'
-    case 'location':
-      return apiName.value = 'location'
-  }
+const routeToCard = (id:number) => {
+  router.push({name: props.type, params: {id: id}})
 }
-
-
-
-onMounted(async () => {
-    await setApiName()
-    await props.updatePage(props.currentPage)
-})
 
 </script>
 
+
 <template>
-          <div class="cards-wrapper">
-            <ul class="cards">
-              <li class="no-result" v-if="array.length === 0">No search results. <span class="reload-text" @click="reset()">Reload</span></li>
-              <component class="card" :is="setCardComponent()" v-for="item in array" :key="item.id" :item="item"/>
-            </ul>
-            <PaginationComponent class="pagination" v-if="array.length > 0" :pages-arr="totalPages" :current-page="currentPage" @update="updatePage"  />
-          </div>
+    <ul class="cards">
+        <li class="no-result" v-if="array.length === 0">No search results. <span v-if="props.reset" class="reload-text" @click="props.reset()">Reload</span></li>
+            <component class="card" :is="setCardComponent()" v-for="item in array" :key="item.id" :item="item" @click="routeToCard(item.id)"/>
+      </ul>
 </template>
 
 <style scoped>
-
-  
-  
-  .cards{
+.cards{
     display: grid;
     justify-content: center;
     grid-gap: 20px;
@@ -81,20 +55,11 @@ onMounted(async () => {
   
   }
 
-
-
-  
   .no-result{
     text-align: center;
     font-size: 2rem;
     font-weight: 900;
   }
-
-
-  .pagination{
-    margin-top: 30px;
-  }
-
   .reload-text{
     color: orange;
     cursor: pointer;
@@ -105,12 +70,20 @@ onMounted(async () => {
   .reload-text:hover{
     color: orangered;
   }
+
+
+  @media (max-width:1099px) {
+    .cards{
+      grid-gap: 15px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 350px));
+    }
+  }
   
-  @media (max-width:599px){
+  @media (max-width:350px){
     .cards{
       grid-template-columns: 1fr;
     }
   }
   
-  
+
 </style>

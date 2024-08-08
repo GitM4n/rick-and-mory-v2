@@ -61,7 +61,11 @@ const props = defineProps<{
   
 
 
-
+  .episode__air-date p:first-child,
+  .episode__episode p:first-child {
+    font-weight: 600;
+    color: rgb(158, 158, 158);
+  }
   
   
   @media (max-width:599px){

@@ -56,7 +56,7 @@ a{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 400px;
+    height: 700px;
 }
 
 .header__title{
@@ -111,11 +111,20 @@ a{
    
 
 
+@media (max-width:899px){
+    .header__inner{
+        height: 600px;
+    }
 
+}
 
 @media (max-width:599px){ 
     .header__title{
         font-size: 5rem;
+    }
+
+    .header__inner{
+        height: 400px;
     }
 
     .header__list{

@@ -42,3 +42,4 @@ export interface ICharacter {
 
 
 export type NameAPI = 'character' | 'episode' | 'location'
+export type ArrayAPI = ICharacter[] | IEpisode[] | ILocation[]

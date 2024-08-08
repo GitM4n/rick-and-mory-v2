@@ -119,7 +119,7 @@ const emitValue = (page:number|string) =>{
     outline: none;
     background: transparent;
     color: gray;
-    font-size: 2rem;
+    font-size: 2.5rem;
     padding: 5px 10px;
     transition: all .2s ease-in-out;
   }
@@ -137,9 +137,9 @@ const emitValue = (page:number|string) =>{
   }
 
   label{
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: white;
-    line-height: 1.3;
+    line-height: 1;
     transition: all .2s ease-in-out;
   }
 
@@ -156,6 +156,13 @@ const emitValue = (page:number|string) =>{
     .pagination__count{
       display: none;
     }
+
+    input,
+    label{
+      font-size: 2.5rem;
+    }
+
+  
 
 
     .pagination__count.active{

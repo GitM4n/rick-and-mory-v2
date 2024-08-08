@@ -3,14 +3,16 @@
 <script setup lang="ts">
 import HeaderComponent from '@/components/root/HeaderComponent.vue';
 import { rickAPI } from '@/api/rickAndMorty/rickAPI';
-import CardsComponent from '@/components/card/CardsComponent.vue';
+import CardsWrapperComponent from '@/components/card/CardsWrapperComponent.vue';
+
 const {
-    episodes,  
+    episodes, 
     updatePage, 
     reset, 
     totalPages,
     currentPage
 } = rickAPI()
+
 
 
 </script>
@@ -22,7 +24,7 @@ const {
       </HeaderComponent>
       <div class="content">
         <div class="container">
-          <CardsComponent
+          <CardsWrapperComponent
             :array="episodes"
             :total-pages="totalPages"
             :current-page="currentPage"
