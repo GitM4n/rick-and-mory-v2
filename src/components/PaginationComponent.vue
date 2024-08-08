@@ -49,13 +49,12 @@ const updatePage = (page: number) => {
      emitValue(props.pagesArr[props.pagesArr.length-1])
      return
    }
-
    if(page < 1){
      emitValue(1)
      return
    }
 
-
+   emitValue(page)
 }
 
 
