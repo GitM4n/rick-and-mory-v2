@@ -121,6 +121,7 @@ a{
 @media (max-width:599px){ 
     .header__title{
         font-size: 5rem;
+        line-height: 1.2;
     }
 
     .header__inner{

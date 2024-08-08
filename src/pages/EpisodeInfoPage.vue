@@ -83,11 +83,21 @@ onMounted(async () => {
 
 .episode__name,
 .episode__characters-title{
+    padding: 15px;
     font-size: 8rem;
     text-wrap: balance;
     text-align: center;
     font-weight: 900;
   
+}
+
+@media(max-width:1099px){
+    .episode__name,
+    .episode__characters-title{
+        font-size: 6rem;
+        line-height: 1.3;
+    }
+
 }
 
 

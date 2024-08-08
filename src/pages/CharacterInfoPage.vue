@@ -81,6 +81,7 @@ onMounted(async () => {
 <style scoped>
 
 .character__header{
+    padding: 0 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -154,6 +155,7 @@ onMounted(async () => {
 .character__episodes-title,
 .character__origin-title,
 .character__location-title{
+    padding: 15px;
     font-size: 8rem;
     text-wrap: balance;
     text-align: center;
@@ -168,11 +170,33 @@ onMounted(async () => {
     width: 450px;
 }
 
+@media(max-width:1099px){
+    .character__name,
+    .character__episodes-title,
+    .character__origin-title,
+    .character__location-title{
+        font-size: 6rem;
+        line-height: 1.3;
+    }
+
+    .character__image{
+        width: 150px;
+        height: 150px;
+    }
+}
+
 
 @media (max-width:599px){ 
     .character__location_card,
     .character__origin_card{
         width: 250px;
+    }
+
+  
+
+    .character__image{
+        width: 150px;
+        height: 150px;
     }
 }
     
