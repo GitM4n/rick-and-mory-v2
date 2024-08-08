@@ -1,7 +1,7 @@
 import {createRouter, createWebHashHistory} from 'vue-router'
 import type {RouteRecordRaw} from 'vue-router'
 import HomePage from '@/pages/HomePage.vue'
-import { rickAPI } from '@/api/rickAndMorty/rickAPI'
+import { rickAPI } from '../api/rickAndMorty/rickAPI'
 
 const {updatePage} = rickAPI()
 
